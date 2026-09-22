@@ -4,7 +4,7 @@ from dictionaries import *
 
 fönster = tk.Tk()
 
-def val_metod(var_val):
+def val_metod(var_val, etikett_val):
         val_get = var_val.get()
         print("Värdet är", val_get)
         if val_get == "Abbey Road":
@@ -25,6 +25,8 @@ def val_metod(var_val):
             messagebox.showinfo(f"{val_get}", f"{böcker["Da Vinci-koden"].show_info_book()}")
         elif val_get == "Röda Rummet":
             messagebox.showinfo(f"{val_get}", f"{böcker["Röda Rummet"].show_info_book()}")
+        else:
+            etikett_val.config(text="Du måste välja ett svar")
 
 def musik_metod():
     while True:
@@ -33,7 +35,7 @@ def musik_metod():
         musik_ram = tk.Frame(fönster)
         musik_ram.pack()
 
-        var_val = tk.StringVar(fönster)
+        var_val = tk.StringVar()
 
         etikett = tk.Label(fönster, text="Välj ett album")
         etikett.pack(pady=20)
@@ -47,8 +49,14 @@ def musik_metod():
         nevermind_knapp = tk.Radiobutton(fönster, text="Nevermind", value="Nevermind", variable=var_val)
         nevermind_knapp.pack(pady=20)
 
-        knapp = tk.Button(fönster, text="Klicka här för att ange svar", command=lambda: val_metod(var_val))
+        knapp = tk.Button(fönster, text="Klicka här för att ange svar", command=lambda: val_metod(var_val, etikett_val))
         knapp.pack(pady=20)
+
+        etikett_val = tk.Label(fönster, text="", fg="red")
+        etikett_val.pack(pady=20)
+
+        avsluts_knapp = tk.Button(fönster, text="Avsluta", command=exit)
+        avsluts_knapp.pack(pady=20)
 
         fönster.mainloop()
 
@@ -59,22 +67,28 @@ def film_metod():
         val_ram = tk.Frame(fönster)
         val_ram.pack()
 
-        var_val = tk.StringVar(val_ram)
+        var_val = tk.StringVar()
 
-        etikett = tk.Label(val_ram, text="Välj en film")
+        etikett = tk.Label(fönster, text="Välj en film")
         etikett.pack(pady=20)
 
-        jurassicpark_knapp = tk.Radiobutton(val_ram, text="Jurassic Park", value="Jurassic Park", variable=var_val)
+        jurassicpark_knapp = tk.Radiobutton(fönster, text="Jurassic Park", value="Jurassic Park", variable=var_val)
         jurassicpark_knapp.pack(pady=20)
 
-        titanic_knapp = tk.Radiobutton(val_ram, text="Titanic", value="Titanic", variable=var_val)
+        titanic_knapp = tk.Radiobutton(fönster, text="Titanic", value="Titanic", variable=var_val)
         titanic_knapp.pack(pady=20)
 
-        pulpfiction_knapp = tk.Radiobutton(val_ram, text="Pulp Fiction", value="Pulp Fiction", variable=var_val)
+        pulpfiction_knapp = tk.Radiobutton(fönster, text="Pulp Fiction", value="Pulp Fiction", variable=var_val)
         pulpfiction_knapp.pack(pady=20)
 
-        knapp = tk.Button(val_ram, text="Klicka här för att ange svar", command=lambda: val_metod(var_val))
+        knapp = tk.Button(fönster, text="Klicka här för att ange svar", command=lambda: val_metod(var_val, etikett_val))
         knapp.pack(pady=20)
+
+        etikett_val = tk.Label(fönster, text="", fg="red")
+        etikett_val.pack(pady=20)
+
+        avsluts_knapp = tk.Button(fönster, text="Avsluta", command=exit)
+        avsluts_knapp.pack(pady=20)
 
         fönster.mainloop()
 
@@ -85,36 +99,42 @@ def bok_metod():
         val_ram = tk.Frame(fönster)
         val_ram.pack()
 
-        var_val = tk.StringVar(val_ram)
+        var_val = tk.StringVar()
 
-        etikett = tk.Label(val_ram, text="Välj en bok")
+        etikett = tk.Label(fönster, text="Välj en bok")
         etikett.pack(pady=20)
 
-        evoh_knapp = tk.Radiobutton(val_ram, text="En världsomsegling under havet", value="En världsomsegling under havet", variable=var_val)
+        evoh_knapp = tk.Radiobutton(fönster, text="En världsomsegling under havet", value="En världsomsegling under havet", variable=var_val)
         evoh_knapp.pack(pady=20)
 
-        davincikoden_knapp = tk.Radiobutton(val_ram, text="Da Vinci-koden", value="Da Vinci-koden", variable=var_val)
+        davincikoden_knapp = tk.Radiobutton(fönster, text="Da Vinci-koden", value="Da Vinci-koden", variable=var_val)
         davincikoden_knapp.pack(pady=20)
 
-        rodarummet_knapp = tk.Radiobutton(val_ram, text="Röda Rummet", value="Röda Rummet", variable=var_val)
+        rodarummet_knapp = tk.Radiobutton(fönster, text="Röda Rummet", value="Röda Rummet", variable=var_val)
         rodarummet_knapp.pack(pady=20)
 
-        knapp = tk.Button(val_ram, text="Klicka här för att ange svar", command=lambda: val_metod(var_val))
+        knapp = tk.Button(fönster, text="Klicka här för att ange svar", command=lambda: val_metod(var_val, etikett_val))
         knapp.pack(pady=20)
+
+        etikett_val = tk.Label(fönster, text="", fg="red")
+        etikett_val.pack(pady=20)
+
+        avsluts_knapp = tk.Button(fönster, text="Avsluta", command=exit)
+        avsluts_knapp.pack(pady=20)
 
         fönster.mainloop()
 
 def metod():
-    while True:
-        var_get = var.get()
-        if var_get == "Musik":
-            musik_metod()
-        elif var_get == "Film":
-            film_metod()
-        elif var_get == "Bok":
-            bok_metod()
-        else:
-            print("Fel")
+    var_get = var.get()
+    if var_get == "Musik":
+        musik_metod()
+    elif var_get == "Film":
+        film_metod()
+    elif var_get == "Bok":
+        bok_metod()
+    else:
+        etikett2.config(text="Du måste välja ett svar")
+
 
 huvudram = tk.Frame(fönster)
 huvudram.pack()
@@ -136,7 +156,14 @@ bok_knapp.pack(pady=20)
 knapp = tk.Button(huvudram, text="Klicka här för att ange svar", command=metod)
 knapp.pack(pady=20)
 
+etikett2 = tk.Label(huvudram, text="", fg="red")
+etikett2.pack(pady=20)
+
+avsluts_knapp = tk.Button(huvudram, text="Avsluta", command=exit)
+avsluts_knapp.pack(pady=20)
+
 fönster.mainloop()
+
 
 
 
